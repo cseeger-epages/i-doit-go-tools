@@ -12,7 +12,7 @@ You can find more information in my blogposts:
 Here you can find 2 scripts for generating dhcp and dns configurations for default linux dhcp (isc-dhcp-server) and a typical linux dns server (bind9).
 
 ## get-data
-A set of scripts used for getting specific data from i-doit using [i-doit-go](https://github.com/cseeger-epages/i-doit-go-api) and vmware vCenter using [vmware/govmomi](https://github.com/vmware/govmomi).
+A set of scripts used for getting specific data from i-doit using [i-doit-go](https://github.com/cseeger-epages/i-doit-go-api).
 
 ## vm-data
 create and delete scripts for vm data in i-doit
