@@ -6,6 +6,8 @@ You can find more information in my blogposts:
 - [creating-systems-with-pipelining](https://developer.epages.com/blog/2015/08/03/creating-systems-with-pipelining.html)
 - [going-forward](https://developer.epages.com/blog/2017/08/01/going-forward.html)
 
+The software can be used under the GPLv3 see LICENCE.
+
 ## Folders
 
 ### dns-dhcp
