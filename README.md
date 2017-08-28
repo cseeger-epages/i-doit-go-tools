@@ -29,4 +29,4 @@ goidoit.NewLogin
 and adjust these lines by adding your i-doit-url, api-key, username and password to it. Also there are some scripts having multiple lines feel free to add a global var with you data
 and change the NewLogin using these variables.
 
-After changing your credentials the scripts should work properly and can by compiled using the `make.sh` script
+After changing your credentials the scripts should work properly and can by compiled using the `make.sh` script. The script creates a bin folder where all binarys are in.
