@@ -1,0 +1,15 @@
+zone "your.domain" {
+    type master;
+    file "/etc/bind/db.your.domain";
+    also-notify {
+      <list of dns servers>
+    };
+};
+
+zone "20.172.in-addr.arpa"{
+    type master;
+    file "/etc/bind/db.20.172";
+    also-notify {
+      <list of dns servers>
+    };
+};

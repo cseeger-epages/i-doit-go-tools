@@ -1,0 +1,14 @@
+;; db.20.172
+;; reverselookupzone for your.domain
+;;
+$TTL 2D
+
+@       IN      SOA     dns-server.your.domain. root.your.domain. (
+                    $SERIAL       ; Serial
+                    3600          ; Refresh [1h]
+                    600           ; Retry   [10m]
+                    86400         ; Expire  [1d]
+                    600 )         ; Negative Cache TTL [1h]
+;
+
+@       IN      NS      dns-server.your.domain.
