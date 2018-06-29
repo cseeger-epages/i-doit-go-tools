@@ -1,27 +1,3 @@
-/*
-  i-doit-go-tools
-
-  Copyright (C) 2017 Carsten Seeger
-
-  This program is free software: you can redistribute it and/or modify
-  it under the terms of the GNU General Public License as published by
-  the Free Software Foundation, either version 3 of the License, or
-  (at your option) any later version.
-
-  This program is distributed in the hope that it will be useful,
-  but WITHOUT ANY WARRANTY; without even the implied warranty of
-  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-  GNU General Public License for more details.
-
-  You should have received a copy of the GNU General Public License
-  along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
-  @author Carsten Seeger
-  @copyright Copyright (C) 2017 Carsten Seeger
-  @license http://www.gnu.org/licenses/gpl-3.0 GNU General Public License 3
-  @link https://github.com/cseeger-epages/i-doit-go-tools
-*/
-
 package main
 
 import (
@@ -29,13 +5,14 @@ import (
 	"encoding/hex"
 	"flag"
 	"fmt"
-	"github.com/cseeger-epages/i-doit-go-api"
 	"log"
 	"net"
 	"os"
 	"sort"
 	"strconv"
 	"strings"
+
+	"github.com/cseeger-epages/i-doit-go-api"
 )
 
 func main() {
@@ -60,7 +37,7 @@ func main() {
 						data, _ := a.GetObjectByType("C__OBJTYPE__LAYER3_NET", *network)
 
 						id, _ := strconv.Atoi(data.Result[0]["id"].(string))
-						netData, _ := a.GetCategory(id, "C__CATS__NET")
+						netData, _ := a.GetCat(id, "C__CATS__NET")
 						cidrAddr = fmt.Sprintf("%v/%v", netData.Result[0]["address"], netData.Result[0]["cidr_suffix"])
 					} else {
 						cidrAddr = *cidr
@@ -90,7 +67,7 @@ func main() {
 					data, _ := a.GetObjectByType("C__OBJTYPE__LAYER3_NET", *network)
 
 					id, _ := strconv.Atoi(data.Result[0]["id"].(string))
-					netData, _ := a.GetCategory(id, "C__CATS__NET")
+					netData, _ := a.GetCat(id, "C__CATS__NET")
 					cidrAddr = fmt.Sprintf("%v/%v", netData.Result[0]["address"], netData.Result[0]["cidr_suffix"])
 				} else {
 					cidrAddr = *cidr
@@ -197,7 +174,7 @@ func validateIp(ip string, network string) bool {
 	}
 
 	id, _ := strconv.Atoi(obj.Result[0]["id"].(string))
-	netw, _ := a.GetCategory(id, "C__CATS__NET")
+	netw, _ := a.GetCat(id, "C__CATS__NET")
 
 	cidr := fmt.Sprintf("%v/%v", netw.Result[0]["address"], netw.Result[0]["cidr_suffix"])
 
@@ -219,7 +196,7 @@ func getMac(obj string) []string {
 
 	objdata, _ := a.GetObject(obj)
 	id, _ := strconv.Atoi(objdata.Result[0]["id"].(string))
-	objcat, _ := a.GetCategory(id, "C__CMDB__SUBCAT__NETWORK_PORT")
+	objcat, _ := a.GetCat(id, "C__CMDB__SUBCAT__NETWORK_PORT")
 	var ret []string
 	for _, v := range objcat.Result {
 		ret = append(ret, fmt.Sprintf("%v,%v", v["title"], v["mac"]))
@@ -237,13 +214,13 @@ func getNextFreeIpMac(network string, cidr string, reserve int) string {
 		log.Fatal(err)
 	}
 	id, _ := strconv.Atoi(data.Result[0]["id"].(string))
-	netData, _ := a.GetCategory(id, "C__CATS__NET")
+	netData, _ := a.GetCat(id, "C__CATS__NET")
 
 	if len(cidr) == 0 {
 		cidr = fmt.Sprintf("%v/%v", netData.Result[0]["address"], netData.Result[0]["cidr_suffix"])
 	}
 
-	cat, _ := a.GetCategory(id, "C__CATS__NET_IP_ADDRESSES")
+	cat, _ := a.GetCat(id, "C__CATS__NET_IP_ADDRESSES")
 
 	var ipList []net.IP
 	for _, v := range cat.Result {
